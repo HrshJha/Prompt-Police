@@ -3,7 +3,10 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=640&lines=🔐+Jailbreak+Detection+at+Inference+Speed;🧠+Ensemble+ML+%7C+TF-IDF+%2B+Embeddings+%2B+Rules;⚡+FastAPI+%7C+Sub-100ms+Response;🐍+Powered+by+Python+%26+scikit-learn;🛡️+Guard+your+LLM+before+it's+too+late" alt="Typing SVG" />
+  <img 
+    src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=640&lines=%F0%9F%94%90+Jailbreak+Detection+at+Inference+Speed;%F0%9F%A7%A0+Ensemble+ML+%7C+TF-IDF+%2B+Embeddings+%2B+Rules;%E2%9A%A1+FastAPI+%7C+Sub-100ms+Response;%F0%9F%90%8D+Powered+by+Python+%26+scikit-learn;%F0%9F%9B%A1%EF%B8%8F+Guard+your+LLM+before+it%27s+too+late" 
+    alt="Typing SVG" 
+  />
 </p>
 
 <br />
