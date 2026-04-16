@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  --bg-base: #030712;
+  --panel-bg: linear-gradient(180deg, rgba(10, 16, 34, 0.72) 0%, rgba(7, 11, 24, 0.88) 100%);
+  --panel-border: rgba(148, 163, 184, 0.16);
+  --glow-cyan: rgba(34, 211, 238, 0.22);
+  --glow-violet: rgba(139, 92, 246, 0.18);
+  --heat-low: 244, 196, 48;
+  --heat-medium: 249, 115, 22;
+  --heat-high: 244, 63, 94;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 22%),
+    radial-gradient(circle at 80% 12%, rgba(129, 140, 248, 0.12), transparent 24%),
+    linear-gradient(180deg, #020617 0%, #030712 30%, #02040d 100%);
+  color: #e2e8f0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sora", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+  color: #f8fafc;
+}
+
+.app-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(56, 189, 248, 0.03) 40%,
+    rgba(99, 102, 241, 0.03) 60%,
+    transparent 80%
+  );
+  background-size: 200% 200%;
+  animation: drift 18s linear infinite;
+  pointer-events: none;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.85) 20%, transparent 78%);
+}
+
+.panel-glass {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 18px 60px rgba(2, 6, 23, 0.45),
+    0 0 30px rgba(34, 211, 238, 0.06);
+  backdrop-filter: blur(24px);
+}
+
+.panel-glow {
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.12) inset,
+    0 0 36px rgba(34, 211, 238, 0.12),
+    0 30px 80px rgba(15, 23, 42, 0.5);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #7dd3fc 35%, #c4b5fd 65%, #f9a8d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-muted {
+  color: #94a3b8;
+}
+
+.badge-glass {
+  background: rgba(15, 23, 42, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.45), rgba(139, 92, 246, 0.45));
+  border-radius: 999px;
+}
+
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: -180%;
+  background: linear-gradient(
+    110deg,
+    transparent 44%,
+    rgba(56, 189, 248, 0.12) 49%,
+    rgba(255, 255, 255, 0.04) 51%,
+    transparent 56%
+  );
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(-8%);
+  }
+  50% {
+    transform: translateX(8%);
+  }
+  100% {
+    transform: translateX(-8%);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateX(-18%) translateY(-12%);
+  }
+  100% {
+    transform: translateX(18%) translateY(12%);
+  }
+}

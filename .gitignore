@@ -4,3 +4,11 @@ __pycache__/
 *.pyc
 artifacts/
 .DS_Store
+
+# UI
+ui/node_modules/
+ui/dist/
+ui/.env.local
+ui/.env.development.local
+ui/.env.test.local
+ui/.env.production.local

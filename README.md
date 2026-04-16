@@ -26,8 +26,7 @@
   <img src="https://img.shields.io/badge/🐳%20Docker-Supported-2496ED?style=for-the-badge&logo=docker&logoColor=white&labelColor=1a1a2e" />&nbsp;
   <img src="https://img.shields.io/badge/🟢%20Status-Production%20Ready-22c55e?style=for-the-badge&labelColor=1a1a2e" />&nbsp;
   <img src="https://img.shields.io/badge/📜%20License-MIT-8B5CF6?style=for-the-badge&labelColor=1a1a2e" />&nbsp;
-  <img src="https://img.shields.io/github/stars/hrshjha/prompt-police?style=for-the-badge&logo=github&color=f59e0b&labelColor=1a1a2e&label=⭐%20Stars" />
-</p>
+<img src="https://img.shields.io/github/stars/hrshjha/prompt-police?style=for-the-badge&logo=github&color=f59e0b&labelColor=1a1a2e&label=%E2%AD%90%20Stars" /></p>
 
 <br />
 
@@ -57,37 +56,37 @@
 
 ```
                         🧑 User Prompt
+                               │
+                               ▼
+               ╔═══════════════════════════════╗
+               ║       🧹 PREPROCESSING        ║
+               ║  Normalize · Strip · Tokenize ║
+               ╚══════════════╤════════════════╝
                               │
-                              ▼
-              ╔═══════════════════════════════╗
-              ║       🧹 PREPROCESSING        ║
-              ║  Normalize · Strip · Tokenize ║
-              ╚══════════════╤════════════════╝
+            ┌─────────────────┼─────────────────┐
+            ▼                 ▼                  ▼
+    ┌───────────────┐ ┌──────────────┐ ┌─────────────────┐
+    │ 📊 TF-IDF    │ │ 🧠 Embeddings│ │  📏 Rule Engine  │
+    │   Scoring    │ │  (MiniLM-L6) │ │  (Heuristics)    │
+    └──────┬────────┘ └──────┬───────┘ └────────┬─────────┘
+           │                 │                   │
+           └─────────────────┼───────────────────┘
+                             ▼
+                ╔════════════════════════╗
+                ║   🤝 Ensemble Learner  ║
+                ║    (Meta-Classifier)   ║
+                ╚════════════╤═══════════╝
                              │
-           ┌─────────────────┼─────────────────┐
-           ▼                 ▼                  ▼
-   ┌───────────────┐ ┌──────────────┐ ┌─────────────────┐
-   │ 📊 TF-IDF    │ │ 🧠 Embeddings│ │  📏 Rule Engine  │
-   │   Scoring    │ │  (MiniLM-L6) │ │  (Heuristics)    │
-   └──────┬────────┘ └──────┬───────┘ └────────┬─────────┘
-          │                 │                   │
-          └─────────────────┼───────────────────┘
-                            ▼
-               ╔════════════════════════╗
-               ║   🤝 Ensemble Learner  ║
-               ║    (Meta-Classifier)   ║
-               ╚════════════╤═══════════╝
-                            │
-                            ▼
-               ╔════════════════════════╗
-               ║   🎯 Threshold Gate    ║
-               ║    target FPR ≤ 1%     ║
-               ╚═════════╤══════════╤═══╝
-                         │          │
-              ┌──────────┘          └──────────┐
-              ▼                                ▼
-      🔴 ADVERSARIAL                      🟢 BENIGN
-      Block / Flag / Log                Pass Through
+                             ▼
+                ╔════════════════════════╗
+                ║   🎯 Threshold Gate    ║
+                ║    target FPR ≤ 1%     ║
+                ╚═════════╤══════════╤═══╝
+                          │          │
+               ┌──────────┘          └──────────┐
+               ▼                                ▼
+       🔴 ADVERSARIAL                      🟢 BENIGN
+       Block / Flag / Log                Pass Through
 ```
 
 <br />
@@ -165,6 +164,8 @@ Synthetic jailbreak augmentation, class rebalancing, and a configurable False Po
 │   ├── 🧠 train_embedding.py        ← Ensemble model trainer
 │   └── 📊 train_tfidf.py            ← TF-IDF model trainer
 │
+├── 🖥️ ui/                           ← Analyst Dashboard (React + Vite)
+│
 ├── ⚙️  configs/
 │   └── default.json                 ← Threshold & model configuration
 │
@@ -187,12 +188,34 @@ Synthetic jailbreak augmentation, class rebalancing, and a configurable False Po
 
 <br />
 
+## 🖥️ Analyst Dashboard (UI)
+
+Prompt Police comes with a premium, real-time analyst dashboard to visualize threat detection.
+
+**Setup the UI:**
+
+```bash
+cd ui
+npm install
+npm run dev
+```
+
+The dashboard will be available at `http://localhost:5173`. It connects to the FastAPI backend at `http://localhost:8000` via a built-in proxy.
+
+<br />
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
+</p>
+
+<br />
+
 ## 🛠️ Installation
 
 **① Clone the repo**
 
 ```bash
-git clone https://github.com/yourusername/prompt-police.git
+git clone https://github.com/HrshJha/Prompt-Police.git
 cd prompt-police
 ```
 
@@ -245,35 +268,15 @@ Prompt Police trains on **7 battle-tested datasets** pulled automatically from �
 
 <br />
 
-### 🏋️ Train TF-IDF
+### 🏋️ Train Models
 
 ```bash
-PYTHONPATH=. python training/train_tfidf.py \
-  --source hf-expanded \
-  --output-dir artifacts \
-  --target-fpr 0.01
+# Train TF-IDF
+PYTHONPATH=. python training/train_tfidf.py --source hf-expanded --output-dir artifacts --target-fpr 0.01
+
+# Train Embedding + Rule Ensemble
+PYTHONPATH=. python training/train_embedding.py --source hf-expanded --output-dir artifacts --target-fpr 0.01
 ```
-
-### 🧠 Train Embedding + Rule Ensemble
-
-```bash
-PYTHONPATH=. python training/train_embedding.py \
-  --source hf-expanded \
-  --output-dir artifacts \
-  --target-fpr 0.01
-```
-
-### 🗂️ Local / Offline Mode
-
-```bash
-PYTHONPATH=. python training/train_embedding.py \
-  --source local \
-  --jbb data/jbb.jsonl \
-  --oasst1 data/oasst1_placeholder.csv \
-  --output-dir artifacts
-```
-
-> 📦 **Artifacts serialized via `joblib`:** `tfidf_bundle.joblib` · `ensemble_model.joblib` · `threshold.joblib`
 
 <br />
 
@@ -301,17 +304,13 @@ PYTHONPATH=. uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ## 🐳 Docker Deployment
 
-**Build & run manually:**
-
 ```bash
+# One-command Compose (recommended)
+docker compose up --build
+
+# Or build & run manually
 docker build -t prompt-police .
 docker run --rm -p 8000:8000 prompt-police
-```
-
-**Or one-command Compose *(recommended)*:**
-
-```bash
-docker compose up --build
 ```
 
 <br />
@@ -382,17 +381,17 @@ curl -X POST http://127.0.0.1:8000/predict \
 ## 🐍 Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,fastapi,docker,github&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=python,fastapi,docker,github,react,vite,tailwind&theme=dark" />
 </p>
 
 <p align="center">
   <code>🐍 Python</code> &nbsp;·&nbsp;
   <code>⚡ FastAPI</code> &nbsp;·&nbsp;
-  <code>🤗 HuggingFace</code> &nbsp;·&nbsp;
+  <code>⚛️ React</code> &nbsp;·&nbsp;
+  <code>⚡ Vite</code> &nbsp;·&nbsp;
+  <code>🎨 Tailwind</code> &nbsp;·&nbsp;
   <code>🔬 scikit-learn</code> &nbsp;·&nbsp;
-  <code>🧠 sentence-transformers</code> &nbsp;·&nbsp;
-  <code>🐳 Docker</code> &nbsp;·&nbsp;
-  <code>📦 joblib</code>
+  <code>🐳 Docker</code>
 </p>
 
 <br />
@@ -408,7 +407,7 @@ curl -X POST http://127.0.0.1:8000/predict \
 </p>
 
 <p align="center">
-  <a href="https://github.com/yourusername/prompt-police">
+  <a href="https://github.com/HrshJha/Prompt-Police">
     <img src="https://img.shields.io/badge/⭐%20Star%20this%20repo-if%20it%20saved%20your%20LLM-f59e0b?style=for-the-badge&labelColor=1a1a2e" />
   </a>
 </p>
