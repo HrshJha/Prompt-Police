@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Status-Production%20Ready-22c55e?style=for-the-badge&logo=checkmarx&logoColor=white" />
   <img src="https://img.shields.io/badge/Docker-Supported-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
   <img src="https://img.shields.io/badge/License-MIT-8B5CF6?style=for-the-badge" />
-  <img src="https://img.shields.io/github/stars/yourusername/prompt-police?style=for-the-badge&logo=github&color=f59e0b" />
+  <img src="https://img.shields.io/github/stars/hrshjha/prompt-police?style=for-the-badge&logo=github&color=f59e0b" />
 </p>
 
 <br />
