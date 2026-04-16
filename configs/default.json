@@ -1,0 +1,8 @@
+{
+  "api_prefix": "",
+  "model_dir": "artifacts",
+  "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "load_embedding_model": true,
+  "default_threshold": 0.7,
+  "target_fpr": 0.01
+}

@@ -1,0 +1,7 @@
+services:
+  prompt-police:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_DIR: artifacts
